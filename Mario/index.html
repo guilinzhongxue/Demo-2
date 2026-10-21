@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lantern Forest</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="frame">
+      <canvas id="game" width="1280" height="720" aria-label="Lantern Forest game"></canvas>
+
+      <div id="hud" class="hud hidden" aria-live="polite">
+        <div class="chip">Fireflies <span id="firefly-count">0</span>/<span id="firefly-total">0</span></div>
+        <div class="chip">Lanterns <span id="lantern-count">0</span>/<span id="lantern-total">0</span></div>
+        <button id="mute-btn" type="button" class="chip chip-btn">Sound on</button>
+      </div>
+
+      <div id="overlay" class="overlay">
+        <div class="panel">
+          <p class="eyebrow">A dusk wood tale</p>
+          <h1>Lantern Forest</h1>
+          <p class="lead">
+            Guide a little fox through the woods. Light the paper lanterns so the path glows,
+            gather fireflies, and wake the shrine at the end.
+          </p>
+          <ul class="controls">
+            <li><kbd>←</kbd> <kbd>→</kbd> or <kbd>A</kbd> <kbd>D</kbd> move</li>
+            <li><kbd>Space</kbd> / <kbd>↑</kbd> / <kbd>W</kbd> jump</li>
+            <li><kbd>M</kbd> mute sound · <kbd>R</kbd> restart</li>
+          </ul>
+          <button id="start-btn" type="button">Begin the walk</button>
+          <p class="hint">Press Space or Enter to start</p>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

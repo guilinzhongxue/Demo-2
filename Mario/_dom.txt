@@ -1,0 +1,6 @@
+[3288:23168:1021/140911.505:ERROR:chrome\updater\ipc\update_service_dialer_win.cc:75] Failed to open named pipe server process 22732: 拒绝访问。 (0x5)
+[3288:14460:1021/140911.573:ERROR:chrome\updater\ipc\update_service_dialer_win.cc:75] Failed to open named pipe server process 33304: 拒绝访问。 (0x5)
+[3288:23168:1021/140911.644:ERROR:chrome\updater\ipc\update_service_dialer_win.cc:75] Failed to open named pipe server process 21652: 拒绝访问。 (0x5)
+[3288:14460:1021/140911.715:ERROR:chrome\updater\ipc\update_service_dialer_win.cc:75] Failed to open named pipe server process 26956: 拒绝访问。 (0x5)
+[3288:23168:1021/140911.787:ERROR:chrome\updater\ipc\update_service_dialer_win.cc:75] Failed to open named pipe server process 32828: 拒绝访问。 (0x5)
+[3288:14460:1021/140911.855:ERROR:chrome\updater\ipc\update_service_dialer_win.cc:75] Failed to open named pipe server process 20436: 拒绝访问。 (0x5)

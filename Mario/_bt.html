@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lantern Forest</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="frame">
+      <canvas id="game" width="1280" height="720" aria-label="Lantern Forest game"></canvas>
+
+      <div id="hud" class="hud hidden" aria-live="polite">
+        <div class="chip">Fireflies <span id="firefly-count">0</span>/<span id="firefly-total">0</span></div>
+        <div class="chip">Lanterns <span id="lantern-count">0</span>/<span id="lantern-total">0</span></div>
+        <button id="mute-btn" type="button" class="chip chip-btn">Sound on</button>
+      </div>
+
+      <div id="overlay" class="overlay">
+        <div class="panel">
+          <p class="eyebrow">A dusk wood tale</p>
+          <h1>Lantern Forest</h1>
+          <p class="lead">
+            Guide a little fox through the woods. Light the paper lanterns so the path glows,
+            gather fireflies, and wake the shrine at the end.
+          </p>
+          <ul class="controls">
+            <li><kbd>←</kbd> <kbd>→</kbd> or <kbd>A</kbd> <kbd>D</kbd> move</li>
+            <li><kbd>Space</kbd> / <kbd>↑</kbd> / <kbd>W</kbd> jump</li>
+            <li><kbd>M</kbd> mute sound · <kbd>R</kbd> restart</li>
+          </ul>
+          <button id="start-btn" type="button">Begin the walk</button>
+          <p class="hint">Press Space or Enter to start</p>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
+<script type="module">
+  import "/src/main.js";
+  const D = window.__dbg;
+  const out = [];
+  const send = (t, k) => window.dispatchEvent(new KeyboardEvent(t, { key: k, bubbles: true }));
+  const keys = {};
+  window.addEventListener("keydown", (e) => { keys[e.key] = true; });
+  window.addEventListener("keyup", (e) => { keys[e.key] = false; });
+  let now = 0;
+  const dt = 1000 / 60;
+  send("keydown", " ");
+  send("keyup", " ");
+  let jumped = false;
+  for (let f = 0; f < 3000; f++) {
+    if (f === 3) send("keydown", "ArrowRight");
+    const p = D.player;
+    if (!jumped && p.grounded && p.x > 700) { send("keydown", " "); jumped = true; }
+    else if (jumped && f % 40 === 0 && p.grounded) { send("keydown", " "); }
+    if (f % 2 === 0) send("keyup", " ");
+    D.tick(now);
+    now += dt;
+    if (f % 15 === 0 || (p.y > 540 && p.y < 700)) {
+      out.push(f + " x=" + p.x.toFixed(0) + " y=" + p.y.toFixed(0) + " vx=" + p.vx.toFixed(0) + " vy=" + p.vy.toFixed(0) + " g=" + (p.grounded?1:0) + " cam=" + D.camera.x.toFixed(0) + " mode=" + D.mode);
+    }
+    if (p.y > 760) { out.push(">>> f=" + f + " 掉落 x=" + p.x.toFixed(0)); break; }
+  }
+  const pre = document.createElement("pre");
+  pre.id = "trace";
+  pre.textContent = out.join("\n");
+  document.body.appendChild(pre);
+</script>
